@@ -31,7 +31,7 @@ function createNote(type, isPinned, info) {
         isPinned,
         info,
     };
-    return note;
+    return note
 }
 
 function get(noteId) {
@@ -39,7 +39,7 @@ function get(noteId) {
 }
 
 function save(note) {
-    console.log('save note',note);
+    console.log('save note',note.id)
     if (note.id) return storageService.put(NOTES_KEY, note)
     else return storageService.post(NOTES_KEY, note)
 }

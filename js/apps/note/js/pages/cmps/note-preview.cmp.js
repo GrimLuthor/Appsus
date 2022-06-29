@@ -4,22 +4,28 @@ export default {
     props: ["note"],
     template: `
         <section class="note-preview">
-            <textarea @keyup="save" name="" id="note.id" cols="30" rows="10">{{note.info.txt}}</textarea>
+            <textarea @keyup="save"  v-model="noteToEdit.info.txt" id="note.id" cols="30" rows="10"></textarea>
         </section>
 
 `,
     data() {
-        return {};
+        return {
+            noteToEdit: this.note,
+        };
     },
-    created() { },
+    created() {
+    },
     methods: {
         save() {
-            console.log('on save',this.noteToEdit);
-            // if (!this.noteToEdit.id) return;
-            noteService.save(this.noteToEdit).then(() => {
+            console.log('on save', this.note);
+            noteService.save(this.note).then(() => {
                 this.$router.push('/note')
-                eventBus.emit('show-msg', { txt: 'Saved/Update successfully', type: 'success' });
-            })}
+            })
+        },
+        selectNote(id) {
+            console.log('select id',this.noteToEdit);
+            this.noteToEdit = id
+        }
     },
     computed: {},
     unmounted() { },
