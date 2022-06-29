@@ -18,7 +18,7 @@ export default {
             
         </section>
     `,
-    // <email-details />  @saveAsDraft
+    // <email-details />
     components: {
         emailList,
         emailFilter,
