@@ -1,0 +1,18 @@
+/* Lato */
+@font-face {
+    font-family: lato;
+    src: url(fonts/Lato/Lato-Regular.ttf);
+}
+
+/* eurof55 */
+@font-face {
+    font-family: eurofurence;
+    src: url(fonts/eurofurence/eurof55.ttf);
+}
+
+/* Montserrat-Regular */
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(../fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
