@@ -6,6 +6,7 @@ export const mailService = {
     query,
     remove,
     save,
+    filter,
 
 }
 
@@ -58,4 +59,15 @@ function remove(emailId){
 function save(email) {
     if (email.id) return storageService.put(MAIL_KEY, email)
     else return storageService.post(MAIL_KEY, email)
+}
+
+function filter(emails,filterBy,folder){
+        // const regexTxt = new RegExp(filterBy.txt, "i");
+        // return emails.filter((email) => {
+        //     return (regexTxt.test(email.subject) || regexTxt.test(email.body) || regexTxt.test(email.fromName)) && (email.folder === folder || folder ===  'all')
+        // })
+        return emails.filter((email) => {
+            return (email.subject.includes(filterBy.txt) || email.body.includes(filterBy.txt) || email.fromName.includes(filterBy.txt)) && (email.folder === folder || folder ===  'all')
+        })
+
 }

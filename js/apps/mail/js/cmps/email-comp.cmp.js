@@ -22,6 +22,7 @@ export default {
            subject: null,
            body: null,
            wideScreen: false,
+           id: storageService._makeId()
         }
     },
     methods: {
@@ -44,7 +45,17 @@ export default {
 
         },
         saveAsDraft(){
-            
+            this.$emit('save',{
+                id: this.id,
+                subject: this.subject,
+                body: this.body,
+                isRead: false,
+                sentAt : Date.now(),
+                fromEmail: 'user@appsus.com',
+                fromName: 'User Appsus',
+                to: this.receivers,
+                folder: 'draft'
+            })
         },
         toggleWideScreen() {
             this.wideScreen = !this.wideScreen;

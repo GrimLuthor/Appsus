@@ -7,18 +7,18 @@ export default {
        <input @input="setFilter" type="text" v-model="filterBy.txt" placeholder="Search...">
     </section>
    `,
-     data() {
-         return {
-             filterBy: {
-                 txt: '',
-             },
-         };
-     },
-     methods: {
-         setFilter() {
-             this.$emit("filtered", {...this.filterBy});
-         },
-     },
-     computed: {
-     },
+    data() {
+        return {
+            filterBy: {
+                txt: '',
+            },
+        };
+    },
+    methods: {
+        setFilter() {
+            this.$emit("filtered", {...this.filterBy});
+        },
+    },
+    computed: {
+    },
 }

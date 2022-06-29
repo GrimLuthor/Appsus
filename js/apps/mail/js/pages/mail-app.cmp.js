@@ -6,76 +6,77 @@ import emailFolderList from '../cmps/email-folder-list.cmp.js';
 
 
 export default {
- template: `
-    <h1>mail app</h1>
-    <section>
-        <email-filter @filtered="filterMail"/>
-        <email-list :emails="emailsToDisplay" @remove="removeEmail"/>
-        <button @click="compose">Compose</button>
-        <email-compose v-if="composing" @save="save"/>
-        <email-folder-list />
-    </section>
-`,
-// <email-details />
-// <email-folder-list />
-components: {
-    emailList,
-    emailFilter,
-    emailCompose,
-    emailFolderList
+    template: `
+        <h1>mail app</h1>
+        <section>
+            {{this.folder}}
+            <email-filter @filtered="filterMail"/>
+            <email-folder-list @changeFolder="changeFolder" />
+            <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail"/>
+            <button @click="compose">Compose</button>
+            <email-compose v-if="composing" @save="save"/>
+            
+        </section>
+    `,
+    // <email-details />
+    // <email-folder-list />
+    components: {
+        emailList,
+        emailFilter,
+        emailCompose,
+        emailFolderList
 
-},
-data() {
-    return {
-        loggedinUser: {
-            email: 'user@appsus.com',
-            fullname: 'Mahatma Appsus'
+    },
+    data() {
+        return {
+            loggedinUser: {
+                email: 'user@appsus.com',
+                fullname: 'Mahatma Appsus'
+            },
+            emails: null,
+            filterBy: {txt: ''},
+            folder: 'all',
+            composing: false,
+            
+        };
+    },
+    created() {
+        mailService.query().then(emails => {
+            this.emails = emails
+        })
+    },
+    methods: {
+        removeEmail(id) {
+            mailService.remove(id).then(() => {
+                console.log('Deleted successfully');
+                const idx = this.emails.findIndex((email) => email.id === id);
+                this.emails.splice(idx, 1);
+                //eventBus.emit('show-msg', { txt: 'Deleted successfully', type: 'success' });
+            }).catch(err => {
+                console.log(err);
+                //eventBus.emit('show-msg', { txt: 'Error - try again later', type: 'error' });
+            })
         },
-        emails: null,
-        filterBy: null,
-        folder: 'all',
-        composing: false,
-           
-    };
-},
-created() {
-    mailService.query().then(emails => {
-        this.emails = emails
-    })
-},
-methods: {
-    removeEmail(id) {
-        mailService.remove(id).then(() => {
-            console.log('Deleted successfully');
-            const idx = this.emails.findIndex((email) => email.id === id);
-            this.emails.splice(idx, 1);
-            //eventBus.emit('show-msg', { txt: 'Deleted successfully', type: 'success' });
-        }).catch(err => {
-            console.log(err);
-            //eventBus.emit('show-msg', { txt: 'Error - try again later', type: 'error' });
-        })
+        filterMail(filterBy) {
+            this.filterBy = filterBy;
+        },
+        compose(){
+            this.composing = true;
+        },
+        save(newEmail){
+            mailService.save(newEmail).then(() => {
+                this.emails.push(newEmail);
+            })
+            this.composing = false;
+        },
+        changeFolder(folder){
+            console.log('changed', folder);
+            this.folder = folder;
+        }
     },
-    filterMail(filterBy) {
-        console.log(filterBy);
-        this.filterBy = filterBy;
+    computed: {
+        emailsToDisplay() {
+            return mailService.filter(this.emails,this.filterBy,this.folder);
+        },
     },
-    compose(){
-        this.composing = true;
-    },
-    save(newEmail){
-        mailService.save(newEmail).then(() => {
-            this.emails.push(newEmail);
-        })
-        this.composing = false;
-    }
-},
-computed: {
-    emailsToDisplay() {
-        if (!this.filterBy) return this.emails;
-        const regexTxt = new RegExp(this.filterBy.txt, "i");
-        return this.emails.filter((email) => {
-            return (regexTxt.test(email.subject) || regexTxt.test(email.body)) && (email.folder === this.folder || this.folder ===  'all')
-        })
-    },
-},
 };
