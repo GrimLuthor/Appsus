@@ -17,3 +17,34 @@ button {}
     align-items: center;
     justify-content: space-around;
 }
+
+.nav-bar ul{
+    display: flex;
+    list-style: none;
+}
+
+.nav-bar a{
+    text-decoration: none;
+    margin-inline-end: 0.5em;
+}
+
+.note-list{
+    text-align: center;
+}
+
+.note-list ul{
+    display: flex;
+    flex-direction: row;
+}
+.note-list li{
+    padding: 6px;
+    margin: 6px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 1px 1px;
+}
+
+.note-list textarea{
+    border: none;
+}

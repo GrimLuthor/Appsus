@@ -7,8 +7,8 @@ export default {
       <section v-if="bookToEdit" class="book-edit app-main">
           <h4>{{pageTitle}}</h4>
           <form @submit.prevent="save">
-              <input type="text" v-model="bookToEdit.vendor" placeholder="Vendor">
-              <input type="number" v-model.number="bookToEdit.maxSpeed" placeholder="Max speed">
+              <!-- <input type="text" v-model="bookToEdit.vendor" placeholder="Vendor"> -->
+              <!-- <input type="number" v-model.number="bookToEdit.maxSpeed" placeholder="Max speed"> -->
               <button>Save</button>
           </form>
       </section>
