@@ -1,5 +1,5 @@
 import { utilService } from './util-service.js'
-import { storageService } from './async-storage-service.js';
+import { storageService } from '../../../../app-services/async-storage-service.js';
 import booksArray from '../../books.json' assert {type: 'json'}
 
 export const bookService = {

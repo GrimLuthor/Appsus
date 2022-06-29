@@ -1,12 +1,15 @@
 export default {
- template: `
- <h1>note app</h1>
-`,
-data() {
-return {};
-},
-created() {},
-methods: {},
-computed: {},
-unmounted() {},
+    template: `
+  <section class="book-app">
+    <h1>Notes</h1>
+    <book-filter @filtered="filterBook"/>
+    <book-list :books="booksToDisplay" @remove="removeBook"  />
+  </section>`,
+    data() {
+        return {        }
+    },
+    created() { },
+    methods: {},
+    computed: {},
+    unmounted() { },
 };

@@ -11,7 +11,6 @@ export default {
                     <li><router-link to="/mail">Mail</router-link></li>
                     <li><router-link to="/note">Notes</router-link></li>
                     <li><router-link to="/about">About</router-link></li>
-
                 </ul>
             </nav>
         </header>
