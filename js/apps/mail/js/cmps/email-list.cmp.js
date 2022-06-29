@@ -7,7 +7,7 @@ export default {
     template: `
         <section class="email-list">
             <ul>
-                <li v-for="(email,idx) in emails" :key="email.id" class="email-preview-container">
+                <li v-for="(email,idx) in emails" :key="email.id" class="email-preview-container" style="border: 1px solid black">
                     <email-preview :email="email"/>
                     <div class="actions">
                         <button @click="remove(email.id)">X</button>

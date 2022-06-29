@@ -14,12 +14,11 @@ export default {
             <email-folder-list @changeFolder="changeFolder" />
             <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail"/>
             <button @click="compose">Compose</button>
-            <email-compose v-if="composing" @save="save"/>
+            <email-compose v-if="composing" @save="save"  @saveAsDraft="saveAsDraft"/>
             
         </section>
     `,
-    // <email-details />
-    // <email-folder-list />
+    // <email-details />  @saveAsDraft
     components: {
         emailList,
         emailFilter,
@@ -68,6 +67,11 @@ export default {
                 this.emails.push(newEmail);
             })
             this.composing = false;
+        },
+        saveAsDraft(newDraft){
+            mailService.save(newDraft).then(() => {
+                this.emails.push(newDraft);
+            })
         },
         changeFolder(folder){
             console.log('changed', folder);

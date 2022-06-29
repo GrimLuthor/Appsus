@@ -5,7 +5,9 @@ import { storageService } from "../../../../app-services/async-storage-service.j
 export default {
     template: `
         <section class="{wide-screen:wideScreen}">
-            <input v-model="receivers" placeholder="Receiver">
+
+        {{this.id}}
+            <input v-model="receivers" placeholder="Receiver" @input="saveAsDraft">
             <br>
             <input v-model="subject" placeholder="Subject">
             <br>
@@ -18,9 +20,9 @@ export default {
     `,
     data() {
         return {
-           receivers: null,
-           subject: null,
-           body: null,
+           receivers: '',
+           subject: '',
+           body: '',
            wideScreen: false,
            id: storageService._makeId()
         }
@@ -32,7 +34,6 @@ export default {
         send() {
             console.log('save sent');
             this.$emit('save',{
-                id: storageService._makeId(),
                 subject: this.subject,
                 body: this.body,
                 isRead: false,
@@ -45,7 +46,8 @@ export default {
 
         },
         saveAsDraft(){
-            this.$emit('save',{
+            console.log('drafting');
+            this.$emit('saveAsDraft',{
                 id: this.id,
                 subject: this.subject,
                 body: this.body,
