@@ -4,11 +4,12 @@ export default {
     props: ["note"],
     template: `
         <section class="note-preview">
-            <textarea v-if="isTxt"  @keyup="save"  v-model="noteToEdit.info.txt" id="note.id" cols="30" rows="10"></textarea>
+            <textarea v-if="isTxt" @keyup="save"  v-model="noteToEdit.info.txt" id="note.id" cols="30" rows="10"></textarea>
             <img v-if="isImg" :src="fetchNoteImg" alt="">
             <p v-if="isTodos">Todos</p>
-            <video v-if="isMov" width="320" height="240" controls src="https://www.youtube.com/watch?v=pzAYPLetuPE"></video>
+            <!-- <iframe v-if="isMov" width="560" height="315" :src="fetchNoteMov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
             <div class="actions">
+                    <span @click="togglePinned" :class="{pinned : isPinned}">{{star}}</span>
                     <input type="color" v-model="noteColor" @change="setNoteColor">
                     <router-link :to="'/note/edit/'+note.id">Edit</router-link>
                     <p>{{note.color}}</p>
@@ -23,13 +24,13 @@ export default {
             isImg: null,
             isTodos: null,
             isMov: null,
+            isPinned: this.note.isPinned,
             noteColor: null,
+            star: '☆'
         };
     },
     created() {
-        // console.log(this.note);
-        // console.log(this.note.type);
-        // console.log(this.note.color);
+        console.log(this.note.isPinned);
         if (this.note.type === "note-txt") this.isTxt = true
         else this.isTxt = false
         if (this.note.type === "note-img") this.isImg = true
@@ -38,39 +39,46 @@ export default {
         else this.isTodos = false
         if (this.note.type === "note-mov") this.isMov = true
         else this.isMov = false
+        if (this.note.isPinned) this.isPinned = true
+        else this.isPinned = false
 
-        // this.selectNoteColor()
+        if(this.isPinned) this.star = '★'
+        else this.star = '☆'
+
     },
     methods: {
         save() {
-            // console.log('on save', this.note);
+            console.log('on save', this.note);
             noteService.save(this.note).then(() => {
                 this.$router.push('/note')
             })
         },
         selectNote(id) {
-            // console.log('select id',this.noteToEdit);
             this.noteToEdit = id
         },
         setNoteColor() {
             this.$emit("noteColor", {color: this.noteColor, note:this.note})
         },
+        togglePinned(){
+            this.isPinned = !this.isPinned
+            if(this.isPinned) this.star = '★'
+            else this.star = '☆'
+            this.note.isPinned = this.isPinned
+            this.save()
+        }
 
     },
     computed: {
         fetchNoteImg() {
-            console.log(this.noteToEdit.info.url);
+            // console.log(this.noteToEdit.info.url);
             if (!this.noteToEdit.info.url) return
             else return this.noteToEdit.info.url
         },
         fetchNoteMov() {
-            console.log(this.noteToEdit.info.url);
-
-        },
-        noteContent: function () {
-            return {
-
-            }
+            if (!this.noteToEdit.info.url && this.noteToEdit.type !== "note-mov") return
+            // else return this.noteToEdit.info.url
+            // return "https://www.youtube.com/watch?v=5qap5aO4i9A"
+            return "https://www.youtube.com/embed/ts0d7I6m7GE"
         },
     },
     mounted() { },

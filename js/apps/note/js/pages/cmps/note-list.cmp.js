@@ -31,9 +31,6 @@ export default {
             this.$emit('remove', id);
         },
         changeBcColor(noteAndColor){
-            console.log(noteAndColor);
-            console.log(noteAndColor.note);
-            console.log(noteAndColor.color);
             noteAndColor.note.color = noteAndColor.color
             noteService.save(noteAndColor.note)
         }

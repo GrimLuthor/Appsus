@@ -35,7 +35,7 @@ button {}
 .note-list ul{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 .note-list li{
     padding: 6px;
@@ -56,10 +56,26 @@ button {}
     width: 100%;
 }
 
-.note-list video{
+.note-list iframe{
     width: 100%;
+    height: 75%;
 }
 
 .note-list textarea{
     border: none;
+    width: 100%;
+    height: 75%;
+}
+
+.actions span{
+    background-color: #24729100;
+    border: none;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+.pinned{
+    background-color: #24729100;
+    border: none;
+    color: darkgoldenrod;
 }

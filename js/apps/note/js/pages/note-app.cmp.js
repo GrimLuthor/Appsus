@@ -1,6 +1,7 @@
 import { noteService } from "./note-services/note-service.js"
-import { eventBus } from "../../../../app-services/eventBus-service.js"
 import noteList from "./cmps/note-list.cmp.js"
+import noteFilter from "./cmps/note-filter.cmp.js";
+
 
 
 
@@ -9,7 +10,7 @@ export default {
     template: `
   <section class="book-app">
     <h1>Notes</h1>
-    <!-- <book-filter @filtered="filterBook"/> -->
+    <note-filter @filtered="filterNote"/>
     <!-- <button @click="createNote">New note</button> -->
     <router-link to="/note/edit">New note</router-link>
     <note-list :notes="notesToDisplay" @remove="removeNote"/>
@@ -38,14 +39,18 @@ export default {
                 .catch(err => {
                     console.log(err)
                     // showErrorMsg('Failed to remove')
-                })}
+                })},
+                filterNote(filterBy) {
+                    console.log(filterBy);
+                    this.filterBy = filterBy;
+                },
         },
         computed: {
             notesToDisplay() {
                 if (!this.filterBy) return this.notes;
                 const regexTxt = new RegExp(this.filterBy.txt, "i");
                 return this.notes.filter((note) => {
-                    return regexTxt.test(note.title)
+                    return regexTxt.test(note.info.txt) || regexTxt.test(note.type)
                 })
             }
 
@@ -54,5 +59,6 @@ export default {
         unmounted() { },
         components: {
             noteList,
+            noteFilter,
         }
     }

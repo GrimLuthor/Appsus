@@ -70,13 +70,14 @@ let notesArray = [
         isPinned: true,
         info: {
             url: "./img/bookLogo3.jpg",
-            txt: "Fullstack Me Baby!"
+            txt: "Need to set time for vacation"
         },
         color: "lightgreen"
     },
     {
         id: "n102",
         type: "note-img",
+        isPinned: false,
         info: {
             url: "./img/rollingStone.jpg",
             title: "Bobi and Me"
@@ -86,6 +87,7 @@ let notesArray = [
     {
         id: "n103",
         type: "note-todos",
+        isPinned: false,
         color: "lightblue",
         info: {
             label: "Get my stuff together",
@@ -98,6 +100,7 @@ let notesArray = [
     {
         id: "n104",
         type: "note-img",
+        isPinned: false,
         info: {
             url: "./img/sunsetTree.jpg",
             title: "Bobi and Me"
@@ -122,7 +125,7 @@ let notesArray = [
         type: "note-mov",
         isPinned: true,
         info: {
-            url: "https://www.youtube.com/watch?v=5qap5aO4i9A",
+            url: "https://www.youtube.com/embed/ts0d7I6m7GE",
             txt: "Fullstack Me Baby!"
         },
         color: "lightpink"
