@@ -8,7 +8,7 @@ import emailFolderList from '../cmps/email-folder-list.cmp.js';
 export default {
     template: `
         <section class="mail-system">
-            <email-filter class="email-filter" @filtered="filterMail"/>
+            <email-filter class="email-filter" @filtered="filterMail" @filterReadOrUnread="filterReadOrUnread"/>
             <div class="system-body">
                 <div class="sidebar">
                     <button class="btn-compose" @click="compose">Compose</button>
@@ -36,6 +36,7 @@ export default {
             },
             emails: null,
             filterBy: {txt: ''},
+            readOrUnread: 'all',
             folder: 'all',
             composing: false,
             
@@ -61,6 +62,9 @@ export default {
         filterMail(filterBy) {
             this.filterBy = filterBy;
         },
+        filterReadOrUnread(readOrUnread) {
+            this.readOrUnread = readOrUnread;
+        },
         compose(){
             this.composing = true;
         },
@@ -85,7 +89,11 @@ export default {
     },
     computed: {
         emailsToDisplay() {
-            return mailService.filter(this.emails,this.filterBy,this.folder);
+            let readValue;
+            if(this.readOrUnread === 'read') readValue = true
+            else if (this.readOrUnread === 'unread') readValue = false
+            else readValue = 'all'
+            return mailService.filter(this.emails,this.filterBy,this.folder,readValue);
         },
     },
 };

@@ -37,7 +37,7 @@ export default {
                     isRead: false,
                     sentAt : null,
                     fromEmail: 'user@appsus.com',
-                    fromName: 'User Appsus',
+                    fromName: 'Mahatma Appsus',
                     to: this.receivers,
                     folder: 'draft'
                 })
@@ -61,7 +61,7 @@ export default {
                 isRead: false,
                 sentAt : Date.now(),
                 fromEmail: 'user@appsus.com',
-                fromName: 'User Appsus',
+                fromName: 'Mahatma Appsus',
                 to: this.receivers,
                 folder: 'sent'
             })
@@ -76,7 +76,7 @@ export default {
                 isRead: false,
                 sentAt : null,
                 fromEmail: 'user@appsus.com',
-                fromName: 'User Appsus',
+                fromName: 'Mahatma Appsus',
                 to: this.receivers,
                 folder: 'draft'
             })

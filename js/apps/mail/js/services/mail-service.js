@@ -61,9 +61,10 @@ function save(email) {
     else return storageService.post(MAIL_KEY, email)
 }
 
-function filter(emails,filterBy,folder){
+function filter(emails,filterBy,folder,readOrUnread){
         return emails.filter((email) => {
-            return (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) || email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) || email.fromName.toLowerCase().includes(filterBy.txt.toLowerCase())) && (email.folder === folder || (folder ===  'all' && email.folder !== 'draft'))
+            return (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) || email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) || email.fromName.toLowerCase().includes(filterBy.txt.toLowerCase())) && (email.folder === folder || (folder ===  'all' && email.folder !== 'draft')) &&
+            (email.isRead === readOrUnread || readOrUnread === "all")
         })
 
 }
