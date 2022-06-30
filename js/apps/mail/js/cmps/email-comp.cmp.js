@@ -29,7 +29,21 @@ export default {
     },
     methods: {
         close(){
-
+            if(this.receivers.length !== 0 || this.subject.length!==0 || this.body.length !== 0) {
+                this.saveAsDraft()
+                this.$emit('renderDraft',{
+                    id: this.id,
+                    subject: this.subject,
+                    body: this.body,
+                    isRead: false,
+                    sentAt : Date.now(),
+                    fromEmail: 'user@appsus.com',
+                    fromName: 'User Appsus',
+                    to: this.receivers,
+                    folder: 'draft'
+                })
+            }
+            this.$emit('close');
         },
         send() {
             console.log('save sent');

@@ -19,7 +19,7 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-    newEntity.id = _makeId()
+    if(!newEntity.id) newEntity.id = _makeId()
     return query(entityType)
         .then(entities => {
             entities.push(newEntity);
@@ -41,7 +41,8 @@ function put(entityType, updatedEntity) {
     return query(entityType)
         .then(entities => {
             const idx = entities.findIndex(entity => entity.id === updatedEntity.id);
-            entities.splice(idx, 1, updatedEntity)
+            if(idx === -1){post(entityType, updatedEntity)}
+            else entities.splice(idx, 1, updatedEntity)
             _save(entityType, entities)
             return updatedEntity;
         })
