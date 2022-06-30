@@ -30,6 +30,7 @@ function createNote(type, isPinned, info) {
         type,
         isPinned,
         info,
+        color,
     };
     return note
 }
@@ -53,6 +54,8 @@ function getEmptyNote(){
         id: '',
         type: '',
         info: '',
+        color: '',
+        url: '',
     }
 }
 
@@ -66,29 +69,62 @@ let notesArray = [
         type: "note-txt",
         isPinned: true,
         info: {
+            url: "./img/bookLogo3.jpg",
             txt: "Fullstack Me Baby!"
-        }
+        },
+        color: "lightgreen"
     },
     {
         id: "n102",
         type: "note-img",
         info: {
-            url: "http://some-img/me",
+            url: "./img/rollingStone.jpg",
             title: "Bobi and Me"
         },
-        style: {
-            backgroundColor: "#00d"
-        }
+        color: "lightyellow"
     },
     {
         id: "n103",
         type: "note-todos",
+        color: "lightblue",
         info: {
             label: "Get my stuff together",
             todos: [
                 { txt: "Driving liscence", doneAt: null },
                 { txt: "Coding power", doneAt: 187111111 }
             ]
-        }
-    }
+        },
+    },
+    {
+        id: "n104",
+        type: "note-img",
+        info: {
+            url: "./img/sunsetTree.jpg",
+            title: "Bobi and Me"
+        },
+        style: {
+            backgroundColor: "#00d"
+        },
+        color: "purple"
+    },
+    {
+        id: "n105",
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            url: "./img/bookLogo3.jpg",
+            txt: "Fullstack Me Baby!"
+        },
+        color: "orange"
+    },
+    {
+        id: "n106",
+        type: "note-mov",
+        isPinned: true,
+        info: {
+            url: "https://www.youtube.com/watch?v=5qap5aO4i9A",
+            txt: "Fullstack Me Baby!"
+        },
+        color: "lightpink"
+    },
 ];

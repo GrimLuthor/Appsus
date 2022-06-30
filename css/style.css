@@ -33,16 +33,31 @@ button {}
 }
 
 .note-list ul{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 .note-list li{
     padding: 6px;
     margin: 6px;
-    width: 450px;
+    width: 250px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     box-shadow: 1px 1px 1px 1px;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-between;
+}
+
+.note-list img{
+    width: 100%;
+}
+
+.note-list video{
+    width: 100%;
 }
 
 .note-list textarea{

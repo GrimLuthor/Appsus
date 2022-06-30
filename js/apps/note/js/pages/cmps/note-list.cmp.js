@@ -1,39 +1,45 @@
 import notePreview from "../cmps/note-preview.cmp.js"
+import { noteService } from "../note-services/note-service.js"
+
 
 
 export default {
     props: ["notes"],
     template: `
-  <section class="note-list">
-      <h2>Note list</h2>
-        <ul>
-            <li v-for="(note,idx) in notes" :key="note.id" class="note-preview-container">
-                <note-preview :note="note"/>
-                <div class="actions">
-                    <button @click="remove(note.id)">X</button>
-                    <!-- <router-link :to="'/note/'+note.id">Details</router-link> -->
-                    <router-link :to="'/note/edit/'+note.id">Edit</router-link>
-                </div>
-            </li>
-        </ul>
+    <section class="note-list">
+        <h2>Note list</h2>
+            <ul>
+                <li v-for="(note,idx) in notes" :key="note.id" v-bind:style="{backgroundColor:note.color}" class="note-preview-container">
+                    <note-preview :note="note" @noteColor="changeBcColor"/>
+                    <!-- <div class="actions"> -->
+                        <button @click="remove(note.id)">X</button>
+                    <!-- </div> -->
+                </li>
+            </ul>
     </section>
 `,
     data() {
-        return {};
+        return { 
+        }
     },
-    created() { },
+    created() {
+        
+    },
     methods: {
         remove(id) {
-            console.log(id);
+            // console.log(id);
             this.$emit('remove', id);
         },
-        // select(note) {
-        //     this.$emit('selected', note);
-        // }
-
-
+        changeBcColor(noteAndColor){
+            console.log(noteAndColor);
+            console.log(noteAndColor.note);
+            console.log(noteAndColor.color);
+            noteAndColor.note.color = noteAndColor.color
+            noteService.save(noteAndColor.note)
+        }
     },
     computed: {},
+    mounted(){},
     unmounted() { },
     components: {
         notePreview,
