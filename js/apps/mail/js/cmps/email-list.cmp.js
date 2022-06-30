@@ -7,12 +7,9 @@ export default {
     template: `
         <section>
             <ul class="email-list">
-                <li v-for="(email,idx) in emails" :key="email.id" class="email-preview-container" style="border: 1px solid black">
-                    <email-preview :email="email"/>
-                    <div class="actions">
-                        <button @click="remove(email.id)">X</button>
-                    </div>
-                </li>
+                <div v-for="(email,idx) in emails" :key="email.id" class="email-preview-container">
+                    <email-preview :email="email" @remove="remove"/>
+                </div>
             </ul>
         </section>
     `,
@@ -21,6 +18,7 @@ export default {
     },
     data() {
         return {
+            isMouseOver: false,
         };
     },
     created() {
@@ -29,7 +27,7 @@ export default {
         remove(emailId){
             this.$emit("remove", emailId);
             console.log('remove', emailId);
-        }
+        },
     },
     computed: {},
 }

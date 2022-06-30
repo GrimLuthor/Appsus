@@ -1,9 +1,19 @@
 .email-list {
     list-style: none;
+    width: 90vw;
 }
 
 .email-preview-container {
     background-color: azure;
+    transition: box-shadow .3s;
+    border: 1px solid rgb(182, 182, 182);
+    padding: 0%;
+    width: 80%;
+}
+
+.email-preview-container:hover {
+    box-shadow: 0 0 11px rgba(0, 0, 0, 0.2);
+    background-color: rgb(229, 252, 252);
 }
 
 .widescreen {
@@ -15,13 +25,13 @@
 }
 
 .mail-composer {
-    border: 1px solid black;
+    border: 1px solid rgb(77, 77, 77);
     border-radius: 5px;
     background-color: rgb(239, 239, 239);
     padding: 10px;
     position: fixed;
-    width: 30vw;
-    height: 40vh;
+    width: 35vw;
+    height: 55vh;
     right: 0;
     bottom: 0;
 }
@@ -30,4 +40,51 @@
     width: 100%;
     height: 75%;
     resize: none;
+}
+
+.email-text {
+    height: 35px;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.actions {
+    /* position: absolute; */
+    float: right;
+}
+
+/* .sidebar-folders {
+    background-color: beige;
+    width: 10vw;
+    height: 100vh;
+    text-align: center;
+} */
+
+.system-body {
+    display: flex;
+}
+
+.btn-compose {
+    height: 50px;
+}
+
+.email-filter {
+    width: 100%;
+    height: 5vh;
+    background-color: beige;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar {
+    background-color: beige;
+    position: sticky;
+    top: 5vh;
+    width: 10vw;
+    height: 95vh;
+    text-align: center;
 }
