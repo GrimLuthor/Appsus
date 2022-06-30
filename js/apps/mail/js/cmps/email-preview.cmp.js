@@ -75,7 +75,8 @@ export default {
             }
             
             this.detailsOpened = true
-            this.toggleRead(this.email.id)
+            this.email.isRead = true
+            mailService.save(this.email)
             
         },
         close(){
