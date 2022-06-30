@@ -7,14 +7,16 @@ import emailFolderList from '../cmps/email-folder-list.cmp.js';
 
 export default {
     template: `
-        <h1>mail app</h1>
-        <section>
-            {{this.folder}}
-            <email-filter @filtered="filterMail"/>
-            <email-folder-list @changeFolder="changeFolder" />
-            <button @click="compose">Compose</button>
+        <section class="mail-system">
+            <email-filter class="email-filter" @filtered="filterMail"/>
+            <div class="system-body">
+                <div class="sidebar">
+                    <button class="btn-compose" @click="compose">Compose</button>
+                    <email-folder-list @changeFolder="changeFolder" />
+                </div>
+                <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail"/>
+            </div>
             <email-compose v-if="composing" @save="save"  @saveAsDraft="saveAsDraft" @close="closeCompose" @renderDraft="renderDraft"/>
-            <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail"/>
             
         </section>
     `,
