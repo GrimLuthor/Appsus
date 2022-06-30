@@ -1,6 +1,7 @@
 import { noteService } from "./note-services/note-service.js"
 import noteList from "./cmps/note-list.cmp.js"
 import noteFilter from "./cmps/note-filter.cmp.js";
+import noteEdit from "./note-edit.cmp.js";
 
 
 
@@ -10,9 +11,9 @@ export default {
     template: `
   <section class="book-app">
     <h1>Notes</h1>
+    <note-edit></note-edit>
     <note-filter @filtered="filterNote"/>
-    <!-- <button @click="createNote">New note</button> -->
-    <router-link to="/note/edit">New note</router-link>
+    <!-- <router-link to="/note/edit">New note</router-link> -->
     <note-list :notes="notesToDisplay" @remove="removeNote"/>
   </section>`,
     data() {
@@ -60,5 +61,6 @@ export default {
         components: {
             noteList,
             noteFilter,
+            noteEdit,
         }
     }

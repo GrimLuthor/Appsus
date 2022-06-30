@@ -1,4 +1,6 @@
 import { noteService } from "../note-services/note-service.js"
+import noteEdit from "../note-edit.cmp.js"
+
 
 export default {
     props: ["note"],
@@ -8,11 +10,10 @@ export default {
             <img v-if="isImg" :src="fetchNoteImg" alt="">
             <p v-if="isTodos">Todos</p>
             <!-- <iframe v-if="isMov" width="560" height="315" :src="fetchNoteMov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="actions">
+            <div class="note-actions">
                     <span @click="togglePinned" :class="{pinned : isPinned}">{{star}}</span>
                     <input type="color" v-model="noteColor" @change="setNoteColor">
                     <router-link :to="'/note/edit/'+note.id">Edit</router-link>
-                    <p>{{note.color}}</p>
                 </div>
         </section>
 
@@ -83,4 +84,7 @@ export default {
     },
     mounted() { },
     unmounted() { },
+    components: {
+        noteEdit,
+    }
 };

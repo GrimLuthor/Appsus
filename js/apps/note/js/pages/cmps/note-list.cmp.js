@@ -12,7 +12,7 @@ export default {
                 <li v-for="(note,idx) in notes" :key="note.id" v-bind:style="{backgroundColor:note.color}" class="note-preview-container">
                     <note-preview :note="note" @noteColor="changeBcColor"/>
                     <!-- <div class="actions"> -->
-                        <button @click="remove(note.id)">X</button>
+                        <button @click="remove(note.id)">Remove note</button>
                     <!-- </div> -->
                 </li>
             </ul>
