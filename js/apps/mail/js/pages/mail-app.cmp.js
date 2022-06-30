@@ -77,13 +77,11 @@ export default {
             this.emails.push(newDraft);
         },
         changeFolder(folder){
-            console.log('changed', folder);
             this.folder = folder;
         },
         closeCompose(){
             this.composing = false;
-            //this.emails.push(newDraft);
-        }
+        },
     },
     computed: {
         emailsToDisplay() {

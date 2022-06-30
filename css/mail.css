@@ -9,6 +9,7 @@
     border: 1px solid rgb(182, 182, 182);
     padding: 0%;
     width: 80%;
+    overflow-wrap: break-word;
 }
 
 .email-preview-container:hover {
@@ -47,20 +48,12 @@
     padding: 7px;
     justify-content: center;
     align-items: center;
-
 }
 
 .actions {
-    /* position: absolute; */
     float: right;
+    margin-top: 0%;
 }
-
-/* .sidebar-folders {
-    background-color: beige;
-    width: 10vw;
-    height: 100vh;
-    text-align: center;
-} */
 
 .system-body {
     display: flex;
@@ -87,4 +80,39 @@
     width: 10vw;
     height: 95vh;
     text-align: center;
+}
+
+.details {
+    height:fit-content;
+    background-color: rgb(213, 248, 255);
+    /* box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.55); */
+    box-shadow: 0px 10px 13px -7px #000000, -50px -50px 0px -30px rgba(0,0,0,0);
+}
+
+.email-subject{
+    /* overflow-wrap: break-word; */
+    border-bottom: 1px solid rgb(155, 155, 155);
+    font-size: larger;
+}
+
+.details-from {
+    border-bottom: 1px solid rgb(155, 155, 155);
+}
+
+.details-body {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.preview-subject {
+    display: inline-block;
+    width: 95%;
+    margin-right: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.btn-close {
+    float: right;
 }

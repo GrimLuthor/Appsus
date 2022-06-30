@@ -8,7 +8,7 @@ export default {
         <section>
             <ul class="email-list">
                 <div v-for="(email,idx) in emails" :key="email.id" class="email-preview-container">
-                    <email-preview :email="email" @remove="remove"/>
+                    <email-preview :email="email" @remove="remove" />
                 </div>
             </ul>
         </section>

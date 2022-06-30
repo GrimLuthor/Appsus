@@ -3,6 +3,7 @@
 import { storageService } from "../../../../app-services/async-storage-service.js";
 
 export default {
+    props: ["email"],
     template: `
         <section :class="{widescreen:wideScreen}" class="mail-composer">
         <button @click="close">X</button>
@@ -18,30 +19,40 @@ export default {
     `,
     data() {
         return {
-           receivers: '',
-           subject: '',
-           body: '',
-           wideScreen: false,
-           id: storageService._makeId()
+
+            receivers: '',
+            subject: '',
+            body: '',
+            wideScreen: false,
+            id: storageService._makeId()
         }
+    },
+    created() {
+        if(!receivers){this.receivers = this.email.receivers}
+        this.receivers = this.email.receivers
+        console.log(this.receivers);
+        this.subject = this.email.subject
+        console.log(this.subject);
+        this.body = this.email.body
     },
     methods: {
         close(){
-            if(this.receivers.length !== 0 || this.subject.length!==0 || this.body.length !== 0) {
-                this.saveAsDraft()
-                this.$emit('renderDraft',{
-                    id: this.id,
-                    subject: this.subject,
-                    body: this.body,
-                    isRead: false,
-                    sentAt : null,
-                    fromEmail: 'user@appsus.com',
-                    fromName: 'User Appsus',
-                    to: this.receivers,
-                    folder: 'draft'
-                })
-            }
-            this.$emit('close');
+            console.log(this.receivers)
+            // if(this.receivers.length !== 0 || this.subject.length!==0 || this.body.length !== 0) {
+            //     this.saveAsDraft()
+            //     this.$emit('renderDraft',{
+            //         id: this.id,
+            //         subject: this.subject,
+            //         body: this.body,
+            //         isRead: false,
+            //         sentAt : null,
+            //         fromEmail: 'user@appsus.com',
+            //         fromName: 'User Appsus',
+            //         to: this.receivers,
+            //         folder: 'draft'
+            //     })
+            // }
+            // this.$emit('close');
         },
         send() {
             console.log('save sent');
@@ -75,4 +86,5 @@ export default {
             this.wideScreen = !this.wideScreen;
         }
     },
+
 }
