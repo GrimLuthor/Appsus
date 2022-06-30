@@ -2,6 +2,7 @@
 
 import { storageService } from "../../../../app-services/async-storage-service.js";
 
+
 export default {
     template: `
         <section :class="{widescreen:wideScreen}" class="mail-composer">
@@ -44,6 +45,15 @@ export default {
             this.$emit('close');
         },
         send() {
+            if(!this.receivers){
+                alert('Enter recievers to send this email')
+                return
+            }
+            if(!this.subject&&!this.body){
+                if(!confirm('Are you sure you want to send an empty email?')){
+                    return
+                }
+            }
             console.log('save sent');
             this.$emit('save',{
                 subject: this.subject,

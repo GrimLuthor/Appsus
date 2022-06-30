@@ -14,7 +14,7 @@ export default {
                     <button class="btn-compose" @click="compose">Compose</button>
                     <email-folder-list @changeFolder="changeFolder" />
                 </div>
-                <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail"/>
+                <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail" @saveAsDraft="saveAsDraft" @save="save" @renderDraft="renderDraft"/>
             </div>
             <email-compose v-if="composing" @save="save"  @saveAsDraft="saveAsDraft" @close="closeCompose" @renderDraft="renderDraft"/>
             

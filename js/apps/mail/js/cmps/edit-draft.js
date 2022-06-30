@@ -24,37 +24,47 @@ export default {
             subject: '',
             body: '',
             wideScreen: false,
-            id: storageService._makeId()
+            id: storageService._makeId(),
+            prevId: '',
         }
     },
     created() {
-        if(!receivers){this.receivers = this.email.receivers}
-        this.receivers = this.email.receivers
-        console.log(this.receivers);
-        this.subject = this.email.subject
-        console.log(this.subject);
-        this.body = this.email.body
+        if(!this.email.receivers){this.receivers = ''}
+        else this.receivers = this.email.receivers
+
+        if(!this.email.subject){this.subject = ''}
+        else this.subject = this.email.subject
+
+        if(!this.email.body){this.body = ''}
+        else this.body = this.email.body
+
+        this.prevId = this.email.id
     },
     methods: {
         close(){
-            console.log(this.receivers)
-            // if(this.receivers.length !== 0 || this.subject.length!==0 || this.body.length !== 0) {
-            //     this.saveAsDraft()
-            //     this.$emit('renderDraft',{
-            //         id: this.id,
-            //         subject: this.subject,
-            //         body: this.body,
-            //         isRead: false,
-            //         sentAt : null,
-            //         fromEmail: 'user@appsus.com',
-            //         fromName: 'User Appsus',
-            //         to: this.receivers,
-            //         folder: 'draft'
-            //     })
-            // }
-            // this.$emit('close');
+
+                this.saveAsDraft()
+                this.$emit('renderDraft',{
+                    id: this.id,
+                    subject: this.subject,
+                    body: this.body,
+                    isRead: false,
+                    sentAt : null,
+                    fromEmail: 'user@appsus.com',
+                    fromName: 'User Appsus',
+                    to: this.receivers,
+                    folder: 'draft'
+                })
+                this.$emit("closeDraftEdit")
+            
+            this.$emit('close');
+            this.$emit('remove',this.prevId);
         },
         send() {
+            if(!this.receivers){
+                alert('Enter recievers to send this email')
+                return
+            }
             console.log('save sent');
             this.$emit('save',{
                 subject: this.subject,
@@ -66,6 +76,7 @@ export default {
                 to: this.receivers,
                 folder: 'sent'
             })
+            this.$emit('remove',this.prevId);
 
         },
         saveAsDraft(){
