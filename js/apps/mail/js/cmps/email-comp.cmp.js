@@ -4,18 +4,16 @@ import { storageService } from "../../../../app-services/async-storage-service.j
 
 export default {
     template: `
-        <section class="{wide-screen:wideScreen}">
-
-        {{this.id}}
+        <section :class="{widescreen:wideScreen}" class="mail-composer">
+        <button @click="close">X</button>
+            <button @click="toggleWideScreen">Full Screen</button>
+            <button @click="send">Send</button>
+            <br>
             <input v-model="receivers" placeholder="Receiver" @input="saveAsDraft">
             <br>
             <input v-model="subject" placeholder="Subject">
             <br>
-            <textarea v-model="body"></textarea>
-            <br>
-            <button @click="close">X</button>
-            <button @click="toggleWideScreen">Full Screen</button>
-            <button @click="send">Send</button>
+            <textarea  class="body-input" v-model="body"></textarea>
         </section>
     `,
     data() {
