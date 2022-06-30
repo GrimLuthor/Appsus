@@ -63,7 +63,7 @@ function save(email) {
 
 function filter(emails,filterBy,folder){
         return emails.filter((email) => {
-            return (email.subject.includes(filterBy.txt) || email.body.includes(filterBy.txt) || email.fromName.includes(filterBy.txt)) && (email.folder === folder || (folder ===  'all' && email.folder !== 'draft'))
+            return (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) || email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) || email.fromName.toLowerCase().includes(filterBy.txt.toLowerCase())) && (email.folder === folder || (folder ===  'all' && email.folder !== 'draft'))
         })
 
 }
