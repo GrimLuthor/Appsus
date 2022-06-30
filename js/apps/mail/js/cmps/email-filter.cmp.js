@@ -1,6 +1,7 @@
 "use strict"
 
 export default {
+    props: ["unreadCount"],
     template: `
     <section class="email-filter">
         <select v-model="readOrUnread" @change="filterReadOrUnread">
@@ -9,6 +10,7 @@ export default {
             <option value="unread">Unread</option>
         </select>
        <input @input="setFilter" type="text" v-model="filterBy.txt" placeholder="Search...">
+       <h3 v-if="unreadCount"> Unread: {{unreadCount}}</h3>
     </section>
    `,
     data() {

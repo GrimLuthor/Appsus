@@ -8,7 +8,7 @@ import emailFolderList from '../cmps/email-folder-list.cmp.js';
 export default {
     template: `
         <section class="mail-system">
-            <email-filter class="email-filter" @filtered="filterMail" @filterReadOrUnread="filterReadOrUnread"/>
+            <email-filter class="email-filter" @filtered="filterMail" @filterReadOrUnread="filterReadOrUnread" :unreadCount="unreadEmailsCount"/>
             <div class="system-body">
                 <div class="sidebar">
                     <button class="btn-compose" @click="compose">Compose</button>
@@ -95,5 +95,9 @@ export default {
             else readValue = 'all'
             return mailService.filter(this.emails,this.filterBy,this.folder,readValue);
         },
+        unreadEmailsCount(){
+            if(!this.emails) return
+            return mailService.unreadEmailsCount(this.emails)
+        }
     },
 };

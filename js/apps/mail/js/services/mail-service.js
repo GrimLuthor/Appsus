@@ -7,6 +7,7 @@ export const mailService = {
     remove,
     save,
     filter,
+    unreadEmailsCount
 
 }
 
@@ -67,4 +68,11 @@ function filter(emails,filterBy,folder,readOrUnread){
             (email.isRead === readOrUnread || readOrUnread === "all")
         })
 
+}
+
+function unreadEmailsCount(emails){
+    let count = emails.filter((email) => {
+        return email.isRead === false
+    })
+    return count.length
 }

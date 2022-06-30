@@ -8,7 +8,7 @@
     transition: box-shadow .3s;
     border: 1px solid rgb(182, 182, 182);
     padding: 0%;
-    width: 80%;
+    width: 90%;
     overflow-wrap: break-word;
 }
 
@@ -72,6 +72,7 @@
     top: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .sidebar {
@@ -107,7 +108,7 @@
 
 .preview-subject {
     display: inline-block;
-    width: 90%;
+    width: 85%;
     margin-right: 0;
     overflow: hidden;
     white-space: nowrap;
