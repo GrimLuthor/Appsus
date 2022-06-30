@@ -12,9 +12,9 @@ export default {
             {{this.folder}}
             <email-filter @filtered="filterMail"/>
             <email-folder-list @changeFolder="changeFolder" />
-            <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail"/>
             <button @click="compose">Compose</button>
             <email-compose v-if="composing" @save="save"  @saveAsDraft="saveAsDraft" @close="closeCompose" @renderDraft="renderDraft"/>
+            <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail"/>
             
         </section>
     `,

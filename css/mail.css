@@ -1,0 +1,33 @@
+.email-list {
+    list-style: none;
+}
+
+.email-preview-container {
+    background-color: azure;
+}
+
+.widescreen {
+    background-color: aquamarine !important;
+    width: 70vw !important;
+    height: 40vh !important;
+    left: 15%;
+    top: 25%;
+}
+
+.mail-composer {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(239, 239, 239);
+    padding: 10px;
+    position: fixed;
+    width: 30vw;
+    height: 40vh;
+    right: 0;
+    bottom: 0;
+}
+
+.body-input {
+    width: 100%;
+    height: 75%;
+    resize: none;
+}
