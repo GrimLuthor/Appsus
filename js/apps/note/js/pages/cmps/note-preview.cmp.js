@@ -55,8 +55,9 @@ export default {
     methods: {
         saveAsEmail(){
             console.log(this.noteToEdit);
-            this.$router.push('/mail')
-            eventBus.emit('noteToEmail', this.noteToEdit)
+            this.$router.push('/mail').then(()=>{
+                eventBus.emit('noteToEmail', this.noteToEdit)
+            })
         },
         save() {
             console.log('on save', this.note);

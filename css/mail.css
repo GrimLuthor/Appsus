@@ -135,10 +135,12 @@
     border-top-right-radius: 15px;
     border: 1px solid rgb(232, 231, 231);
     width: 90%;
+    transition: 0.3s;
+    margin-bottom: 1vh;
 }
 
 .folder-tag:hover {
-    background-color: #000000;
+    background-color: #c2c2c2;
     width: 95%;
 }
 

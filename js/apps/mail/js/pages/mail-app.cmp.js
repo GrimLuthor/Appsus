@@ -17,7 +17,7 @@ export default {
                 </div>
                 <email-list v-if="emails" :emails="emailsToDisplay" @remove="removeEmail" @saveAsDraft="saveAsDraft" @save="save" @renderDraft="renderDraft"/>
             </div>
-            <email-compose v-if="composing" @save="save"  @saveAsDraft="saveAsDraft" @close="closeCompose" @renderDraft="renderDraft"/>
+            <email-compose v-if="composing" :noteToSend="noteToSend" @save="save"  @saveAsDraft="saveAsDraft" @close="closeCompose" @renderDraft="renderDraft"/>
             
         </section>
     `,
@@ -39,7 +39,10 @@ export default {
             filterBy: {txt: ''},
             readOrUnread: 'all',
             folder: 'all',
+
             composing: false,
+
+            noteToSend: null,
             
         };
     },
@@ -51,17 +54,16 @@ export default {
     },
     methods: {
         recieveNote(note){
-            console.log('recieved note', note);
+            this.noteToSend = note;
+            this.composing = true
         },
         removeEmail(id) {
             mailService.remove(id).then(() => {
                 console.log('Deleted successfully');
                 const idx = this.emails.findIndex((email) => email.id === id);
                 this.emails.splice(idx, 1);
-                //eventBus.emit('show-msg', { txt: 'Deleted successfully', type: 'success' });
             }).catch(err => {
                 console.log(err);
-                //eventBus.emit('show-msg', { txt: 'Error - try again later', type: 'error' });
             })
         },
         filterMail(filterBy) {
