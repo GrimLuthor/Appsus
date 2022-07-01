@@ -4,13 +4,17 @@ export default {
     props: ["unreadCount"],
     template: `
     <section class="email-filter">
-        <select v-model="readOrUnread" @change="filterReadOrUnread">
+        <select class="sort-select" v-model="sortBy" @change="sortEmails">
+            <option value="date">Sort by Date</option>
+            <option value="title">Sort by Title</option>
+        </select>
+        <select class="read-filter" v-model="readOrUnread" @change="filterReadOrUnread">
             <option value="all">All</option>
             <option value="read">Read</option>
             <option value="unread">Unread</option>
         </select>
-       <input @input="setFilter" type="text" v-model="filterBy.txt" placeholder="Search...">
-       <h3 v-if="unreadCount"> Unread: {{unreadCount}}</h3>
+       <input class="email-search" @input="setFilter" type="text" v-model="filterBy.txt" placeholder="Search...">
+       <h3 class="unread-count" v-if="unreadCount" title="Unread Count">{{unreadCount}}</h3>
     </section>
    `,
     data() {
@@ -18,7 +22,8 @@ export default {
             filterBy: {
                 txt: '',
             },
-            readOrUnread: 'all'
+            readOrUnread: 'all',
+            sortBy: 'date',
         };
     },
     methods: {
@@ -27,6 +32,10 @@ export default {
         },
         filterReadOrUnread(){
             this.$emit("filterReadOrUnread",this.readOrUnread);
+        },
+        sortEmails(){
+            console.log('changing to ',this.sortBy);
+            this.$emit("sortEmails",this.sortBy);
         }
     },
     computed: {

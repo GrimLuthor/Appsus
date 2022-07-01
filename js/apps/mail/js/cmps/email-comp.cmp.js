@@ -7,13 +7,14 @@ export default {
     props: ['noteToSend'],
     template: `
         <section :class="{widescreen:wideScreen}" class="mail-composer">
-        <button @click="close">X</button>
-            <button @click="toggleWideScreen">Full Screen</button>
-            <button @click="send">Send</button>
+            <div class="comp-btns">
+                <button @click="close">X</button>
+                <button @click="toggleWideScreen">Full Screen</button>
+                <button @click="send">Send</button>
+            </div>
+            <input class="comp-receivers" v-model="receivers" placeholder="Receiver" @input="saveAsDraft">
             <br>
-            <input v-model="receivers" placeholder="Receiver" @input="saveAsDraft">
-            <br>
-            <input v-model="subject" placeholder="Subject" @input="saveAsDraft">
+            <input class="comp-subject" v-model="subject" placeholder="Subject" @input="saveAsDraft">
             <br>
             <textarea class="body-input" v-model="body" @input="saveAsDraft"></textarea>
         </section>
