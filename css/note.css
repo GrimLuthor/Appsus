@@ -17,6 +17,14 @@
     box-shadow: 1px 1px 1px 1px;
 }
 
+.note-filter{
+    text-align: center;
+}
+
+.note-filter input{
+    height: 25px;
+}
+
 .note-actions{
     display: flex;
     align-items: center;
