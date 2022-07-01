@@ -2,7 +2,8 @@ export default {
     template: `
         <header class="app-header">
             <div class="logo">
-                LOGO
+                <h1>Appsus</h1>
+                <img class="horse" src="../img/horse-icon.png"> 
             </div>
             <nav class="nav-bar">
                 <ul>

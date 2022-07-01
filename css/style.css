@@ -26,6 +26,18 @@ p {
     justify-content: space-around;
 }
 
+.horse {
+    float: right;
+    max-width:50px;
+    max-height:50px;
+    margin-left: 1vw;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .nav-bar ul{
     display: flex;
     list-style: none;

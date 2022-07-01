@@ -107,16 +107,27 @@ export default {
             else if (this.readOrUnread === 'unread') readValue = false
             else readValue = 'all'
             let filtered =  mailService.filter(this.emails,this.filterBy,this.folder,readValue)
-            if(this.sortBy === 'date') return filtered
-            else return filtered.sort((a,b)=>{
+            if(this.sortBy === 'date'){
+                    return filtered.sort((a,b) => {
+                        if (a.sentAt < b.sentAt) {
+                            return 1;
+                        }
+                        if (a.sentAt > b.sentAt) {
+                            return -1;
+                        }
+                        return 0;
+                    })
+            }else{
+                return filtered.sort((a,b)=>{
                 if (a.subject > b.subject) {
                     return 1;
-                  }
-                  if (a.subject < b.subject) {
+                }
+                if (a.subject < b.subject) {
                     return -1;
-                  }
-                  return 0;
-            }) 
+                }
+                return 0;
+            })
+            } 
         },
         unreadEmailsCount(){
             if(!this.emails) return

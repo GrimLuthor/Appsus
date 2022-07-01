@@ -109,6 +109,10 @@
     width: 80vw;
 }
 
+.preview-body-snippet {
+    color: #adadad;
+}
+
 
 .email-preview-container {
     background-color: rgb(255, 255, 255);
