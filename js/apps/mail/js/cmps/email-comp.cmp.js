@@ -4,6 +4,7 @@ import { storageService } from "../../../../app-services/async-storage-service.j
 
 
 export default {
+    props: ['noteToSend'],
     template: `
         <section :class="{widescreen:wideScreen}" class="mail-composer">
         <button @click="close">X</button>
@@ -14,7 +15,7 @@ export default {
             <br>
             <input v-model="subject" placeholder="Subject" @input="saveAsDraft">
             <br>
-            <textarea  class="body-input" v-model="body" @input="saveAsDraft"></textarea>
+            <textarea class="body-input" v-model="body" @input="saveAsDraft"></textarea>
         </section>
     `,
     data() {
@@ -24,6 +25,13 @@ export default {
            body: '',
            wideScreen: false,
            id: storageService._makeId()
+        }
+    },
+    created() {
+        if(this.noteToSend) {
+            console.log('recieved',this.noteToSend);
+            this.body = this.noteToSend.info.txt
+            this.saveAsDraft()
         }
     },
     methods: {
