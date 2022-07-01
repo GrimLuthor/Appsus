@@ -11,9 +11,8 @@ export default {
         template: `
     <section class="book-app">
         <h1>Notes</h1>
-        <note-edit @renderNote="renderNote"></note-edit>
         <note-filter @filtered="filterNote"/>
-        <!-- <router-link to="/note/edit">New note</router-link> -->
+        <note-edit @renderNote="renderNote"></note-edit>
         <note-list :notes="notesToDisplay" @remove="removeNote"/>
     </section>`,
     data() {
