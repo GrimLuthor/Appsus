@@ -12,7 +12,10 @@ export default {
             <!-- <iframe v-if="isMov" width="560" height="315" :src="fetchNoteMov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
             <div class="note-actions">
                     <span @click="togglePinned" :class="{pinned : isPinned}">{{star}}</span>
-                    <input type="color" v-model="noteColor" @change="setNoteColor">
+
+                    <input hidden type="color" v-model="noteColor" @change="setNoteColor" id="user-color" name="user-color">
+                    <label class="user-color" for="user-color"><img src="./img/paint-board-and-brush.png"></label>
+                    
                     <router-link :to="'/note/edit/'+note.id">Edit</router-link>
                 </div>
         </section>
@@ -31,7 +34,7 @@ export default {
         };
     },
     created() {
-        console.log(this.note.isPinned);
+        // console.log(this.note.isPinned);
         if (this.note.type === "note-txt") this.isTxt = true
         else this.isTxt = false
         if (this.note.type === "note-img") this.isImg = true
