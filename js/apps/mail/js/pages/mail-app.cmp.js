@@ -3,6 +3,7 @@ import emailList from '../cmps/email-list.cmp.js';
 import emailFilter from '../cmps/email-filter.cmp.js';
 import emailCompose from '../cmps/email-comp.cmp.js';
 import emailFolderList from '../cmps/email-folder-list.cmp.js';
+import { eventBus } from '../../../../app-services/eventBus-service.js';
 
 
 export default {
@@ -46,8 +47,12 @@ export default {
         mailService.query().then(emails => {
             this.emails = emails
         })
+        eventBus.on('noteToEmail', this.recieveNote)
     },
     methods: {
+        recieveNote(note){
+            console.log('recieved note', note);
+        },
         removeEmail(id) {
             mailService.remove(id).then(() => {
                 console.log('Deleted successfully');

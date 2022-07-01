@@ -8,9 +8,6 @@ export default {
             <section class="main-form">
                 <form @submit.prevent="save">
                     <input type="text" :placeholder="txtByType">
-                    <!-- <textarea v-if="isTxt" ref="textInput" v-model="noteToEdit.info.txt"></textarea> -->
-                    <!-- <img v-if="isImg" placeholder="Enter image url"> -->
-                    <!-- <p v-if="isTodos" placeholder="Enter todos"></p> -->
                     <button>Save</button>
                 </form>
 
@@ -49,10 +46,10 @@ export default {
         save(newNote) {
             console.log('save new note', newNote);
             noteService.save(newNote).then(note => {
-              //saving the last note to the first place
-              this.notes.unshift(note)
+            //   this.notes.unshift(note)
               noteService.saveNotes(this.notes)
             })
+            this.$emit("renderNote", newNote)
           },
         setNoteType(noteType) {
             // console.log(noteType);

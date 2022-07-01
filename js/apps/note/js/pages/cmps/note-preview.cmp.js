@@ -1,5 +1,6 @@
 import { noteService } from "../note-services/note-service.js"
 import noteEdit from "../note-edit.cmp.js"
+import { eventBus } from "../../../../../app-services/eventBus-service.js"
 
 
 export default {
@@ -13,9 +14,10 @@ export default {
             <div class="note-actions">
                     <span @click="togglePinned" :class="{pinned : isPinned}">{{star}}</span>
 
-                    <input hidden type="color" v-model="noteColor" @change="setNoteColor" id="user-color" name="user-color">
-                    <label class="user-color" for="user-color"><img src="./img/paint-board-and-brush.png"></label>
-                    
+                    <input class="set-color" type="color" v-model="noteColor" @change="setNoteColor" id="user-color" name="user-color">
+                    <!-- <label class="user-color" for="user-color"><img src="./img/paint-board-and-brush.png"></label> -->
+                    <button @click="saveAsEmail">Send to email</button>
+
                     <router-link :to="'/note/edit/'+note.id">Edit</router-link>
                 </div>
         </section>
@@ -51,10 +53,14 @@ export default {
 
     },
     methods: {
+        saveAsEmail(){
+            console.log(this.noteToEdit);
+            this.$router.push('/mail')
+            eventBus.emit('noteToEmail', this.noteToEdit)
+        },
         save() {
             console.log('on save', this.note);
             noteService.save(this.note).then(() => {
-                this.$router.push('/note')
             })
         },
         selectNote(id) {

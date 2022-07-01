@@ -11,7 +11,7 @@ export default {
         template: `
     <section class="book-app">
         <h1>Notes</h1>
-        <note-edit></note-edit>
+        <note-edit @renderNote="renderNote"></note-edit>
         <note-filter @filtered="filterNote"/>
         <!-- <router-link to="/note/edit">New note</router-link> -->
         <note-list :notes="notesToDisplay" @remove="removeNote"/>
@@ -28,6 +28,9 @@ export default {
         })
     },
     methods: {
+        renderNote(newNote){
+            this.notes.push(newNote)
+        },
         removeNote(id) {
             console.log('removeNote', id);
             noteService.remove(id)
