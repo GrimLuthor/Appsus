@@ -8,14 +8,14 @@ import noteEdit from "./note-edit.cmp.js";
 
 
 export default {
-    template: `
-  <section class="book-app">
-    <h1>Notes</h1>
-    <note-edit></note-edit>
-    <note-filter @filtered="filterNote"/>
-    <!-- <router-link to="/note/edit">New note</router-link> -->
-    <note-list :notes="notesToDisplay" @remove="removeNote"/>
-  </section>`,
+        template: `
+    <section class="book-app">
+        <h1>Notes</h1>
+        <note-edit></note-edit>
+        <note-filter @filtered="filterNote"/>
+        <!-- <router-link to="/note/edit">New note</router-link> -->
+        <note-list :notes="notesToDisplay" @remove="removeNote"/>
+    </section>`,
     data() {
         return {
             notes: null,
@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         removeNote(id) {
-            console.log('removeNote',id);
+            console.log('removeNote', id);
             noteService.remove(id)
                 .then(() => {
                     console.log('Deleted successfully')
@@ -40,27 +40,28 @@ export default {
                 .catch(err => {
                     console.log(err)
                     // showErrorMsg('Failed to remove')
-                })},
-                filterNote(filterBy) {
-                    console.log(filterBy);
-                    this.filterBy = filterBy;
-                },
-        },
-        computed: {
-            notesToDisplay() {
-                if (!this.filterBy) return this.notes;
-                const regexTxt = new RegExp(this.filterBy.txt, "i");
-                return this.notes.filter((note) => {
-                    return regexTxt.test(note.info.txt) || regexTxt.test(note.type)
                 })
-            }
-
         },
-        mounted() { },
-        unmounted() { },
-        components: {
-            noteList,
-            noteFilter,
-            noteEdit,
+        filterNote(filterBy) {
+            console.log(filterBy);
+            this.filterBy = filterBy;
+        },
+    },
+    computed: {
+        notesToDisplay() {
+            if (!this.filterBy) return this.notes;
+            const regexTxt = new RegExp(this.filterBy.txt, "i");
+            return this.notes.filter((note) => {
+                return regexTxt.test(note.info.txt) || regexTxt.test(note.type)
+            })
         }
+
+    },
+    mounted() { },
+    unmounted() { },
+    components: {
+        noteList,
+        noteFilter,
+        noteEdit,
     }
+}

@@ -1,5 +1,6 @@
 import { utilService } from '../../../../../app-services/util-service.js'
 import { storageService } from '../../../../../app-services/async-storage-service.js'
+import noteApp from '../../../js/pages/note-app.cmp.js'
 
 
 const NOTES_KEY = 'notesDb'
@@ -11,6 +12,8 @@ export const noteService = {
     get,
     save,
     remove,
+    createNote,
+    saveNotes,
 }
 
 _createNotes()
@@ -24,14 +27,19 @@ function _createNotes(){
   })
 }
 
-function createNote(type, isPinned, info) {
+function createNote(newNote) {
+    console.log('new note', newNote);
     const note = {
         id: utilService.makeId(),
-        type,
-        isPinned,
-        info,
-        color,
+        type: newNote.type,
+        isPinned: false,
+        // info,
+        // color,
+        url: '',
     };
+    // save(note)
+    // query()
+    console.log(note);
     return note
 }
 
@@ -59,6 +67,10 @@ function getEmptyNote(){
     }
 }
 
+function saveNotes(notes){
+    utilService.saveToStorage(NOTES_KEY, notes);
+  }
+  
 function query() {
     return storageService.query(NOTES_KEY)
 }
@@ -69,7 +81,6 @@ let notesArray = [
         type: "note-txt",
         isPinned: true,
         info: {
-            url: "./img/bookLogo3.jpg",
             txt: "Need to set time for vacation"
         },
         color: "lightgreen"
@@ -79,7 +90,7 @@ let notesArray = [
         type: "note-img",
         isPinned: false,
         info: {
-            url: "./img/rollingStone.jpg",
+            url: "./js/apps/note/images/sunsetTree.jpg",
             title: "Bobi and Me"
         },
         color: "lightyellow"
@@ -102,7 +113,7 @@ let notesArray = [
         type: "note-img",
         isPinned: false,
         info: {
-            url: "./img/sunsetTree.jpg",
+            url: "./js/apps/note/images/rollingStone.jpg",
             title: "Bobi and Me"
         },
         style: {
@@ -115,7 +126,6 @@ let notesArray = [
         type: "note-txt",
         isPinned: true,
         info: {
-            url: "./img/bookLogo3.jpg",
             txt: "Fullstack Me Baby!"
         },
         color: "orange"

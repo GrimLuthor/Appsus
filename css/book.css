@@ -1,0 +1,187 @@
+
+/* book-app */
+
+.book-app {
+    /* height: 80vh; */
+    /* background-color:#f5f9ee; */
+}
+
+.book-app h1 {
+    height: 48px;
+    padding-top: 16px;
+    text-align: center;
+    background-color: #f8da5b;
+}
+
+/* book-list */
+
+.book-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* book-preview */
+
+.book-preview-container {
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+    /* height: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px;
+    background-color: white;
+}
+
+.book-preview-container:hover {
+    background-color: #eef2e2;
+}
+
+.book-preview-container img {
+    width: 100px;
+    height: 150px;
+    margin-block-start: 6px;
+
+}
+
+.book-preview-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-preview-section p{
+    letter-spacing: 0.1;
+    padding-bottom: 3px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.actions a{
+    text-align: center;
+    text-decoration: none;
+    color: #333333;
+    border-radius: 5px;
+    background-color: #f5f9ee;
+    width: 75px;
+    border-radius: 20px;
+    border: 0.2px solid rgb(97, 97, 97);
+}
+
+.actions a:hover{
+    background-color: #247291;
+}
+
+/* book-details */
+.book-details {
+    text-align: center;
+    background-color: #f8da5b;
+    padding: 20px;
+}
+
+.book-details-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-details-card p {
+    max-width: 300px;
+    margin-block-start: 6px;
+}
+
+.details {
+    letter-spacing: 0.1em;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+
+}
+
+.book-details img {
+    padding: 16px;
+    /* height: 150px; */
+}
+
+/* book-edit */
+
+.book-edit {
+    background-color: lightgoldenrodyellow;
+    padding: 20px;
+}
+
+/* book-filter */
+.book-filter {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #f8da5b;
+    padding: 16px;
+    height: 48;
+    box-shadow: 1px 1px 1px 1px;
+}
+
+.book-filter:hover{
+    background-color: #ffed9f;
+
+}
+
+.book-filter input {
+    border-radius: 5px;
+    margin-inline-start: 16px;
+    margin-inline-end: 16px;
+}
+
+.green {
+    color: green
+}
+
+.user-msg {
+    position: absolute;
+    top: 90vh;
+    right: 10px;
+    background-color: rgba(144, 238, 144, 0.604);
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.success {
+    background-color: rgb(110, 198, 120);
+}
+
+.error {
+    background-color: rgb(217, 123, 123);
+    color: white;
+}
+
+.home-page{
+    margin-block-start: 48px;
+    margin-block-end: 248px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.home-page img{
+    height: 480px;
+    width: 720px;
+}
+
+.hero{
+    display: flex;
+    justify-content: center;
+
+}

@@ -4,45 +4,26 @@ import { eventBus } from '../../../../app-services/eventBus-service.js';
 export default {
     template: `
          <section v-if="noteToEdit" class="note-edit">
-            <!-- <h4>{{pageTitle}}</h4> -->
+            <h4>{{pageTitle}}</h4>
             <section class="main-form">
                 <form @submit.prevent="save">
                     <input type="text" :placeholder="txtByType">
                     <!-- <textarea v-if="isTxt" ref="textInput" v-model="noteToEdit.info.txt"></textarea> -->
                     <!-- <img v-if="isImg" placeholder="Enter image url"> -->
                     <!-- <p v-if="isTodos" placeholder="Enter todos"></p> -->
-                    <!-- <button>Save</button> -->
+                    <button>Save</button>
                 </form>
+
                 <div class="noteForm">
-                    <button @click="setNoteType('Text')" id="noteType">
-                        <img src="./img/chat icon.png" alt=""></button>
-                    <button @click="setNoteType('Video')" id="noteType">
-                        <img src="./img/videon icon.jpg" alt=""></button>
-                    <button @click="setNoteType('Pic')" id="noteType">
-                        <img src="./img/image icon.png" alt=""></button>
-                    <button @click="setNoteType('Todos')" id="noteType">Todos</button>
-
+                    <button @click="setNoteType('Text')" id="noteType" :class="{selectedBtn : isTxt}">
+                    <img src="./js/apps/note/images/chat.png" alt="txt"></button>
+                    <button @click="setNoteType('Video')" id="noteType" :class="{selectedBtn : isMov}">
+                    <img src="./js/apps/note/images/videon icon.jpg" alt="video"></button>
+                    <button @click="setNoteType('Pic')" id="noteType" :class="{selectedBtn : isImg}">
+                    <img src="./js/apps/note/images/image icon.png" alt="image"></button>
+                    <button @click="setNoteType('Todos')" id="noteType" :class="{selectedBtn : isTodos}">
+                    <img src="./js/apps/note/images/todos icon.png" alt="todos"></button>
                 </div>
-
-                <!-- <form class="noteForm" @click="setNoteType" id="noteType">
-                    <input type="radio" name="type" value="Text">
-                    <label for="Text"><img src="./img/chat icon.png" alt=""></label>
-                    <input type="radio" name="type" value="Video">
-                    <label for="Video"><img src="./img/videon icon.jpg" alt=""></label>
-                    <input type="radio" name="type" value="Pic">
-                    <label for="Pic"><img src="./img/image icon.png" alt=""></label>
-                    <input type="radio" name="type" value="Todos">
-                    <label for="Todos">Todos</label>
-                </form> -->
-
-                <!-- <select @change="setNoteType" name="" id="noteType">
-                    <option value="Text">Text</option>
-                    <option value="Video">Video</option>
-                    <option value="Pic">Pic</option>
-                    <option value="Todos">Todos</option>
-                </select> -->
-
-
             </section>
         </section>
 
@@ -50,7 +31,7 @@ export default {
     data() {
         return {
             noteToEdit: null,
-            isTxt: true,
+            isTxt: null,
             isImg: null,
             isTodos: null,
             isMov: null,
@@ -65,36 +46,40 @@ export default {
 
     },
     methods: {
-        save() {
-            noteService.save(this.noteToEdit).then(() => {
-                this.$router.push('/note')
-                eventBus.emit('show-msg', { txt: 'Saved/Update successfully', type: 'success' });
+        save(newNote) {
+            console.log('save new note', newNote);
+            noteService.save(newNote).then(note => {
+              //saving the last note to the first place
+              this.notes.unshift(note)
+              noteService.saveNotes(this.notes)
             })
-        },
-        setNoteType(value) {
-            console.log(value);
-            this.noteType = noteType.value
-            this.noteToEdit.type = noteType.value
+          },
+        setNoteType(noteType) {
+            // console.log(noteType);
+            this.noteType = noteType
+            this.noteToEdit.type = noteType
             // console.log(noteType.value);
 
-            if (noteType.value === "Text") {
+            if (noteType === "Text") {
                 this.isTxt = true
+                console.log(this.isTxt);
                 this.txtByType = "What's on your mind"
             }
             else this.isTxt = false
 
-            if (noteType.value === "Video") {
+            if (noteType === "Video") {
                 this.isMov = true
                 this.txtByType = "Enter video url"
             }
             else this.isMov = false
 
-            if (noteType.value === "Todos") {
+            if (noteType === "Todos") {
                 this.isTodos = true
                 this.txtByType = "Enter todos"
             }
-            else this.isImg = false
-            if (noteType.value === "Pic") {
+            else this.isTodos = false
+
+            if (noteType === "Pic") {
                 this.isImg = true
                 this.txtByType = "Enter image url"
             }
@@ -107,9 +92,6 @@ export default {
             // console.log('title', id);
             return id ? 'Edit note' : 'Add note'
         },
-        // txtByType(){
-        //     return 'txxxxxxt'
-        // },
 
 
 
