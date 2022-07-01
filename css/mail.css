@@ -63,6 +63,10 @@
 
 .btn-compose {
     height: 50px;
+    width: 95%;
+    border-radius: 25px;
+    margin-bottom: 2vh;
+    margin-right: 25px;
 }
 
 .email-filter {
