@@ -17,17 +17,6 @@ p {
     margin: 0;
 }
 
-
-button {
-    background-color: #f5f9ee;
-    /* border-radius: 20px; */
-    /* border: 0.2px solid rgb(97, 97, 97); */
-}
-
-button:hover {
-    background-color: #247291;
-}
-
 .app-header {
     color: #eef2e2;
     background-color: #247291;
