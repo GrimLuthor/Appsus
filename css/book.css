@@ -163,9 +163,8 @@
     margin-block-start: 6px;
 }
 
-.details {
+.book-details-btns {
     padding: 10px;
-    /* margin-block-start: 9.5em; */
     margin-inline-start: 7em;
     width: 250px;
     background-color: #eef2e2;
@@ -181,7 +180,7 @@
     -moz-box-shadow: 0px -1px 5px -1px rgba(0,0,0,0.59);
 }
 
-.details:hover {
+.book-details-btns:hover {
     background-color: white;
     transition: box-shadow .1s;
     box-shadow: 0px -1px 5px 2px rgba(0, 0, 0, 0.59);
@@ -190,11 +189,11 @@
 
 }
 
-.details {
+.book-details-btns {
     letter-spacing: 0.1em;
 }
 
-.details a{
+.book-details-btns a{
     color: #6f6f70;
 }
 /* book-edit */

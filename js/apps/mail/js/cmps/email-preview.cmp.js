@@ -14,7 +14,7 @@ export default {
                     <div class="preview-subject">{{email.fromName}} {{convertTimeFormat}} {{email.subject}} <span class="preview-body-snippet">{{email.body}}</span></div>
                     
 
-                    <span class="actions" v-show="isMouseOver">
+                    <span class="mail-actions" v-show="isMouseOver">
                         <button @click.stop="remove(email.id)">🗑</button>
                         <button @click.stop="toggleRead(email.id)">📖</button>
                     </span>

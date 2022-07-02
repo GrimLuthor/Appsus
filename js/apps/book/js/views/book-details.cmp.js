@@ -9,7 +9,7 @@ export default {
         <h4>Book details</h4>
         <div class="book-details-card">
           <img :src="bookImgUrl" alt="">
-          <div class="details">
+          <div class="book-details-btns">
             <p>Title: {{book.title}}</p>
             <p>Author: {{book.authors[0]}}</p>
             <p>Page count: {{pageCount}}</p>
