@@ -37,6 +37,7 @@ p {
 .logo {
     display: flex;
     align-items: center;
+    cursor: default;
 }
 
 .nav-bar ul {

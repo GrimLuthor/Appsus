@@ -89,7 +89,7 @@ export default {
 
             if (noteType === "note-mov") {
                 this.isMov = true
-                this.txtByType = "Enter video url"
+                this.txtByType = "Enter video url (embed)"
             }
             else this.isMov = false
 
