@@ -3,22 +3,11 @@
     color: #6f6f70;
 }
 
-.note-list {
-    /* width: 1200px; */
-    padding-left: 12em;
-    padding-right: 12em;
-    /* text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
-}
-
 .note-list ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: end;
+    justify-content: center;
 }
-
 
 .note-list li {
     margin: 1em;
