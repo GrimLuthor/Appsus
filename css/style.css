@@ -26,13 +26,25 @@ p {
     justify-content: space-around;
 }
 
-.nav-bar ul{
+.nav-bar ul {
     display: flex;
     list-style: none;
 }
 
-.nav-bar a{
+a{
+        color: #eef2e2
+
+}
+
+.nav-bar a {
     text-decoration: none;
     margin-inline-end: 0.5em;
 }
 
+.router-link-active{
+
+}
+
+.router-link-exact-active {
+    color: #f8da5b;
+}

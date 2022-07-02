@@ -10,16 +10,20 @@ export default {
             <textarea v-if="isTxt" @keyup="save"  v-model="noteToEdit.info.txt" id="note.id" cols="30" rows="10"></textarea>
             <img v-if="isImg" :src="fetchNoteImg" alt="">
             <p v-if="isTodos">Todos</p>
-            <!-- <iframe v-if="isMov" width="560" height="315" :src="fetchNoteMov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="note-actions">
+            <iframe v-if="isMov" width="560" height="315" src="https://www.youtube.com/embed/ts0d7I6m7GE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="note-actions-container">
+                <div class="note-actions">
                     <span @click="togglePinned" :class="{pinned : isPinned}">{{star}}</span>
+                    
+                    <!-- set color -->
+                    <input class="set-color" type="color" v-model="noteColor"  @change="setNoteColor" id="note-color" name="user-color">
+                    <!-- <label class="user-color" for="note-color"><img src="./img/paint-board-and-brush.png"></label> -->
 
-                    <input class="set-color" type="color" v-model="noteColor" @change="setNoteColor" id="user-color" name="user-color">
-                    <!-- <label class="user-color" for="user-color"><img src="./img/paint-board-and-brush.png"></label> -->
-                    <button @click="saveAsEmail">Send to email</button>
+                    <button @click="saveAsEmail"><img src="./img/sendMail.png" alt=""></button>
 
-                    <router-link :to="'/note/edit/'+note.id">Edit</router-link>
+                    <!-- <router-link :to="'/note/edit/'+note.id">Edit</router-link> -->
                 </div>
+            </div>
         </section>
 
 `,
@@ -61,7 +65,10 @@ export default {
         },
         save() {
             console.log('on save', this.note);
+            this.noteToEdit.info = this.note.info
+            console.log(this.noteToEdit.info);
             noteService.save(this.note).then(() => {
+                // this.$emit('noteToEdit.info.txt', {info: this.noteToEdit, note:this.note})
             })
         },
         selectNote(id) {

@@ -1,13 +1,21 @@
-
-.note-list{
+.note-app{
     text-align: center;
+
 }
 
-.note-list ul{
+.note-list {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.note-list ul {
     display: flex;
     flex-wrap: wrap;
 }
-.note-list li{
+
+.note-list li {
     padding: 6px;
     margin: 6px;
     width: 250px;
@@ -17,62 +25,113 @@
     box-shadow: 1px 1px 1px 1px;
 }
 
-.note-filter{
+.note-filter {
     text-align: center;
 }
 
-.note-filter input{
+.note-filter input {
     height: 25px;
 }
 
+.note-actions-container{
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+
+    margin-block-start: 16px;
+}
+
 .note-actions{
+    height: 25px;
+    width: 250px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: auto;
+    border: none;
 }
 
-/* .note-actions input{
-    background: url(./img/paint-board-and-brush.png) no-repeat scroll 7px 7px;
-    padding-left:30px;
-} */
-
-.user-color{
-    width: 25px;
-}
-
-.note-actions span{
+.note-actions span {
     background-color: #24729100;
     border: none;
     font-size: xx-large;
     cursor: pointer;
 }
 
-.note-preview-container{
-    display: flex;
-    justify-content: center;
+.note-actions img{
+    height: 25px;
+    width: 35px;
 }
 
-.note-preview-container button{
-    border: 0.2px solid rgb(114, 114, 114);
+.note-actions input{
+    height: 25px;
+    width: 35px;
+}
+
+.note-preview-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 300px;
+    border-radius: 7px 7px 7px 7px;
+
+}
+
+.note-preview-container:hover{
+    transition: box-shadow .1s;
+
+    box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.59);
+    -webkit-box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.59);
+    -moz-box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.59);
+}
+
+.note-preview-container button {
+    /* border: 0.2px solid rgb(114, 114, 114); */
+    border: none;
     border-radius: 3px;
     background-color: rgba(240, 248, 255, 0);
-    width: 100px;
 }
 
-.note-preview-container button:hover{
+.note-preview-container button:hover {
     background-color: rgba(83, 121, 154, 0.62);
 }
 
-.note-list img{
+.user-color{
+    height: 25px;
+}
+
+.note-preview button{
+    height: 30px;
+}
+
+.removeBtn{
+    position: absolute;
+    top: 4px;
+    left: 0;
+    border: none;
+    height: 25px;
+    width: 35px;
+    margin-bottom: 0.2em;
+}
+
+.removeBtn img{
+    height: 100%;
     width: 100%;
 }
 
-.note-list iframe{
+
+.note-preview img {
+    width: 100%;
+    height: 100%;
+}
+
+.note-preview iframe {
     width: 100%;
     height: 75%;
 }
 
-.note-list textarea{
+.note-preview textarea {
     border: none;
     outline: none;
     resize: none;
@@ -81,14 +140,13 @@
     background-color: inherit;
 }
 
-
-.pinned{
+.pinned {
     background-color: #24729100;
     border: none;
     color: darkgoldenrod;
 }
 
-.note-edit{
+.note-edit {
     background-color: lightgray;
     height: 100px;
     display: flex;
@@ -96,52 +154,85 @@
     align-items: center;
 }
 
-.main-form{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.main-form {
+    position: relative;
     border: 0.3px solid rgb(111, 111, 111);
     background-color: white;
-    width: 40%;
+    width: 30%;
     height: 35px;
     border-radius: 3px;
-
 }
 
-.main-form input{
+.main-form input {
     border: none;
     outline: none;
     resize: none;
-    /* cursor: pointer; */
+    margin-inline-start: 1em;
 
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
     -o-appearance: none;
     appearance: none;
-    }
+}
 
-.noteForm button{
+.formButtons img:hover{
+    transition: box-shadow .1s;
+
+    box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.59);
+    -webkit-box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.59);
+    -moz-box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.59);    }
+
+.formBtn img{
+    width: 25px;
+}
+
+.formButtons{
+    display: flex;
+    align-items: baseline;
+    margin-inline-end: 1em;
+}
+
+.formButtons img{    
+    border-radius: 3px 3px 3px 3px;
+}
+
+
+.noteForm form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.noteForm button {
     border: none;
     background-color: rgba(255, 255, 255, 0);
     cursor: pointer
 }
 
-.noteForm button:hover{
-    box-shadow: 1px 1px 1px 1px;
+.noteForm {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
 }
 
+.noteForm label {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer
+}
 
-.selectedBtn{
+.noteForm img {
+    width: 25px;
+}
+
+.selectedBtn {
     background-color: lightgray;
-    /* color: red; */
     box-shadow: 1px 1px 1px 1px;
 }
 
-.noteForm img{
-    width: 25px;    
-}
 
-.set-color{
+.set-color {
     border-radius: 10%;
+    /* background: url(./img/paint-board-and-brush.png); */
 }

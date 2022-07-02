@@ -2,7 +2,7 @@ export default {
     template: `
         <header class="app-header">
             <div class="logo">
-                LOGO
+                Appsus
             </div>
             <nav class="nav-bar">
                 <ul>

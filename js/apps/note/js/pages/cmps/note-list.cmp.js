@@ -7,13 +7,10 @@ export default {
     props: ["notes"],
     template: `
     <section class="note-list">
-        <h2>Note list</h2>
             <ul>
                 <li v-for="(note,idx) in notes" :key="note.id" v-bind:style="{backgroundColor:note.color}" class="note-preview-container">
+                    <button class="removeBtn" @click="remove(note.id)"><img src="./img/trash.png" alt=""></button>
                     <note-preview :note="note" @noteColor="changeBcColor"/>
-                    <!-- <div class="actions"> -->
-                        <button class="actions" @click="remove(note.id)">Remove note</button>
-                    <!-- </div> -->
                 </li>
             </ul>
     </section>
