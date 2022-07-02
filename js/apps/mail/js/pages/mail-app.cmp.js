@@ -9,7 +9,7 @@ import { eventBus } from '../../../../app-services/eventBus-service.js';
 export default {
     template: `
         <section class="mail-system">
-            <email-filter class="email-filter" @filtered="filterMail" @filterReadOrUnread="filterReadOrUnread" :unreadCount="unreadEmailsCount"/>
+            <email-filter class="email-filter" @filtered="filterMail" @filterReadOrUnread="filterReadOrUnread" :unreadCount="unreadEmailsCount" @sortEmails="sortEmails"/>
             <div class="system-body">
                 <div class="sidebar">
                     <button class="btn-compose" @click="compose">Compose</button>
@@ -43,6 +43,8 @@ export default {
             composing: false,
 
             noteToSend: null,
+
+            sortBy: 'date',
             
         };
     },
@@ -72,6 +74,10 @@ export default {
         filterReadOrUnread(readOrUnread) {
             this.readOrUnread = readOrUnread;
         },
+        sortEmails(sortBy){
+            console.log(sortBy);
+            this.sortBy = sortBy;
+        },
         compose(){
             this.composing = true;
         },
@@ -100,7 +106,28 @@ export default {
             if(this.readOrUnread === 'read') readValue = true
             else if (this.readOrUnread === 'unread') readValue = false
             else readValue = 'all'
-            return mailService.filter(this.emails,this.filterBy,this.folder,readValue);
+            let filtered =  mailService.filter(this.emails,this.filterBy,this.folder,readValue)
+            if(this.sortBy === 'date'){
+                    return filtered.sort((a,b) => {
+                        if (a.sentAt < b.sentAt) {
+                            return 1;
+                        }
+                        if (a.sentAt > b.sentAt) {
+                            return -1;
+                        }
+                        return 0;
+                    })
+            }else{
+                return filtered.sort((a,b)=>{
+                if (a.subject > b.subject) {
+                    return 1;
+                }
+                if (a.subject < b.subject) {
+                    return -1;
+                }
+                return 0;
+            })
+            } 
         },
         unreadEmailsCount(){
             if(!this.emails) return

@@ -1,0 +1,32 @@
+.home-page {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-title {
+    font-size: xx-large;
+}
+
+.home-page-container {
+    height: 80vh;
+    width: 80vh;
+    background-color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    align-items: center;
+}
+
+.home-page-container div {
+    background-color: rgb(226, 226, 226);
+    width: 45%;
+    height: 45%;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    cursor: pointer;
+}

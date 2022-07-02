@@ -11,11 +11,11 @@ export default {
         <section>
             <div class="email-text" :class="{details : detailsOpened, reademail : email.isRead}" @mouseover="hovering" @mouseleave="mouseLeft" @click="toggleDetails">
                 <div v-if="!detailsOpened">
-                    <div class="preview-subject">{{email.fromName}} &lt&lt{{email.fromEmail}}>> {{email.subject}} </div>
+                    <div class="preview-subject">{{email.fromName}} {{convertTimeFormat}} {{email.subject}} <span class="preview-body-snippet">{{email.body}}</span></div>
                     
 
                     <span class="actions" v-show="isMouseOver">
-                        <button @click="remove(email.id)">🗑</button>
+                        <button @click.stop="remove(email.id)">🗑</button>
                         <button @click.stop="toggleRead(email.id)">📖</button>
                     </span>
                 </div>
@@ -83,4 +83,32 @@ export default {
             this.detailsOpened = false;
         }
     },
+    computed: {
+        convertTimeFormat(){
+
+            if(this.email.folder === 'draft'){
+                return
+            }
+
+            let time =  new Date(this.email.sentAt)
+
+            const msBetween = Math.abs(time - Date.now())
+
+            const hoursBetween = msBetween / (60*60*1000)
+
+            if (hoursBetween < 24){
+                return `<${time.getHours()}:${JSON.stringify(time.getMinutes()).padStart(2, '0')}> `
+            }
+            if(hoursBetween <  48){
+                return '<yesterday> '
+            }
+            if(hoursBetween < 24*30){
+                return `<${Math.round(hoursBetween/24)} days ago> `
+            }
+            if(hoursBetween < 24*30*12){
+                return `<${Math.round(hoursBetween/(24*30))} months ago> `
+            }
+            return `<${Math.round(hoursBetween/(24*30*12))} years ago> `
+        }
+    }
 }
