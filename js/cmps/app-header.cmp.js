@@ -1,7 +1,7 @@
 export default {
     template: `
         <header class="app-header">
-            <div class="logo">
+            <div class="logo" @click="toHome">
                 <h1>Appsus</h1>
                 <img class="horse" src="../img/horse-icon.png"> 
             </div>
@@ -16,5 +16,10 @@ export default {
             </nav>
         </header>
     
-    `
+    `,
+    methods: {
+        toHome(){
+            this.$router.push('/')
+        },
+    },
 }
