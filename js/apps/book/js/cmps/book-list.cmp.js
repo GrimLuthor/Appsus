@@ -8,7 +8,8 @@ export default {
             <li v-for="(book,idx) in books" :key="book.id" class="book-preview-container">
                 <book-preview :book="book"/>
                 <div class="actions">
-                    <button @click="remove(book.id)">X</button>
+                    <button @click="remove(book.id)">
+                      <img src="./img/icons/trash.png" alt=""></button>
                     <router-link :to="'/book/'+book.id">Details</router-link>
                     <!-- <router-link :to="'/book/edit/'+book.id">Edit</router-link> -->
                 </div>

@@ -16,6 +16,7 @@ export const noteService = {
     saveNotes,
     createImgNote,
     createEmailNote,
+    createDuplicateNote,
 }
 
 _createNotes()
@@ -55,6 +56,25 @@ function createNote(noteTxtInput, noteType) {
         },
         color: 'lightgreen',
         url: '',
+    }
+    if (newNote) return storageService.put(NOTES_KEY, newNote)
+    return storageService.post(NOTES_KEY, newNote)
+}
+
+function createDuplicateNote(noteTxtInput, noteType, noteColor, noteUrl) {
+    // console.log('new note', noteType);
+    // console.log('new note', noteTxtInput);
+    console.log('new note', noteUrl);
+
+    const newNote = {
+        id: utilService.makeId(),
+        type: noteType,
+        isPinned: false,
+        info: {
+            txt: noteTxtInput,
+            url: noteUrl,
+        },
+        color: noteColor,
     }
     if (newNote) return storageService.put(NOTES_KEY, newNote)
     return storageService.post(NOTES_KEY, newNote)
@@ -165,13 +185,25 @@ let notesArray = [
         color: "purple"
     },
     {
+        id: "n108",
+        type: "note-txt",
+        isPinned: false,
+        info: {
+            title: "Lose your dreams and you might lose your mind"
+        },
+        style: {
+            backgroundColor: "#00d"
+        },
+        color: "lightskyblue"
+    },
+    {
         id: "n105",
         type: "note-txt",
         isPinned: true,
         info: {
-            txt: "Fullstack Me Baby!"
+            txt: "For suddenly, I saw you there \nAnd through foggy London town \nThe sun was shining everywhere…”!"
         },
-        color: "orange"
+        color: "lightorange"
     },
     {
         id: "n106",
@@ -182,5 +214,14 @@ let notesArray = [
             txt: "Fullstack Me Baby!"
         },
         color: "lightpink"
+    },
+    {
+        id: "n107",
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            txt: "Just as it is agreed that we all wish to be happy, so too it is agreed that we all wish to be wise, because who is happy without wisdom? Because nobody is satisfied without the supreme good which is discovered and possessed in the truth which we call wisdom."
+        },
+        color: "lightsalmon"
     },
 ];

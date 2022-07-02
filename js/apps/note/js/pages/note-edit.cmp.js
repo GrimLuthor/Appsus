@@ -1,19 +1,19 @@
 import { noteService } from "./note-services/note-service.js"
-// import { eventBus } from '../../../../app-services/eventBus-service.js';
+import { eventBus } from '../../../../app-services/eventBus-service.js';
 
 export default {
     template: `
          <section v-if="noteToEdit" class="note-edit">
-            <h4>{{pageTitle}}</h4>
-            <section class="main-form">                
+            <!-- <h4>{{pageTitle}}</h4> -->
+            <section class="main-form">   
                 <div class="noteForm">
                     <form @submit.prevent="newTxtNote">
                         <input type="text" v-model="noteTxtInput" ref="noteTextInput" :placeholder="txtByType">
                         <div class="formButtons">
                             <button @click="setNoteType('note-txt')" id="noteType" :class="{selectedBtn : isTxt}">
-                            <img src="./js/apps/note/images/chat.png" alt="txt"></button>
+                                <img src="./js/apps/note/images/chat.png" alt="txt"></button>
     
-                            <button @click="setNoteType('note-mov')" id="noteType" :class="{selectedBtn : isMov}">
+                                <button @click="setNoteType('note-mov')" id="noteType" :class="{selectedBtn : isMov}">
                             <img src="./js/apps/note/images/videon icon.jpg" alt="video"></button>
     
                             <input hidden :class="{selectedBtn : isImg}" @change="newImgNote" @click="setNoteType('note-img')" type="file" name="image" id="image"/>
@@ -23,8 +23,7 @@ export default {
                             <img src="./js/apps/note/images/todos icon.png" alt="todos"></button>
                         </div>
                     </form>    
-                </div>
-
+                </div>                
             </section>
         </section>
 
@@ -46,9 +45,19 @@ export default {
         // console.log('note edit created', id);
         if (id) noteService.get(id).then(note => this.noteToEdit = note)
         else this.noteToEdit = noteService.getEmptyNote()
-
+        eventBus.on('duplicateTxtNote', this.duplicateTxtNote)
+        
+        
+        
     },
     methods: {
+        duplicateTxtNote(note) {
+            console.log('in duplicateTxtNote', note);
+            noteService.createDuplicateNote(note.info.txt, note.type, note.color, note.info.url)
+                .then(newNote => {
+                    this.$emit("renderNote", newNote)
+                })
+        },
         newImgNote(img) {
             let newImg = img.target.files[0].name
             noteService.createImgNote(newImg, this.noteType)
@@ -110,4 +119,6 @@ export default {
         this.$refs.noteTextInput.focus()
     },
     unmounted() { },
+    components: {
+    }
 };

@@ -1,6 +1,7 @@
 import { noteService } from "../note-services/note-service.js"
 import noteEdit from "../note-edit.cmp.js"
 import { eventBus } from "../../../../../app-services/eventBus-service.js"
+import todosNote from "../cmps/todos.cmp.js"
 
 
 export default {
@@ -8,20 +9,25 @@ export default {
     template: `
         <section class="note-preview">
             <textarea v-if="isTxt" @keyup="save"  v-model="noteToEdit.info.txt" id="note.id" cols="30" rows="10"></textarea>
+
             <img v-if="isImg" :src="fetchNoteImg" alt="">
-            <p v-if="isTodos">Todos</p>
+
+            <!-- <p v-if="isTodos">Todos</p> -->
+            <todos-note v-if="todos"  v-model="noteToEdit.info.txt" id="note.id"></todos-note>
+
             <iframe v-if="isMov" width="560" height="315" src="https://www.youtube.com/embed/ts0d7I6m7GE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
             <div class="note-actions-container">
                 <div class="note-actions">
-                    <span @click="togglePinned" :class="{pinned : isPinned}">{{star}}</span>
-                    
+                    <span @click="togglePinned" :class="{pinned : isPinned}">{{star}}</span>                    
                     <!-- set color -->
                     <input class="set-color" type="color" v-model="noteColor"  @change="setNoteColor" id="note-color" name="user-color">
                     <!-- <label class="user-color" for="note-color"><img src="./img/paint-board-and-brush.png"></label> -->
 
+                    <button @click="duplicateNote"><img src="./img/duplicate5.png" alt=""></button>
+
                     <button @click="saveAsEmail"><img src="./img/sendMail.png" alt=""></button>
 
-                    <!-- <router-link :to="'/note/edit/'+note.id">Edit</router-link> -->
                 </div>
             </div>
         </section>
@@ -57,6 +63,10 @@ export default {
 
     },
     methods: {
+        duplicateNote(){
+            eventBus.emit('duplicateTxtNote', this.note)
+        },
+
         saveAsEmail(){
             console.log(this.noteToEdit);
             this.$router.push('/mail').then(()=>{
@@ -84,7 +94,6 @@ export default {
             this.note.isPinned = this.isPinned
             this.save()
         }
-
     },
     computed: {
         fetchNoteImg() {
@@ -103,5 +112,6 @@ export default {
     unmounted() { },
     components: {
         noteEdit,
+        todosNote,
     }
 };

@@ -16,7 +16,7 @@ export default {
             <p style="white-space:pre"{{msg}}></p>
             <textarea name="" id="" cols="30" rows="10"></textarea>
         </form> -->
-        <input type="text" name="" id="">
+        <!-- <input type="text" name="" id=""> -->
         <!-- <button @click="getUsers">Get users</button> -->
     </section>
 `,

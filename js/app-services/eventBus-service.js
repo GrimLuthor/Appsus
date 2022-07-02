@@ -1,6 +1,9 @@
 
 //  2 parmas event name and a listener its a func
 function on(eventName, listener) {
+    console.log('evnetBus On',eventName);
+    console.log(listener);
+
     //              a fun that gets the data we send
     const callListener = ({ detail }) => {
         //run the func we got with the data
@@ -16,6 +19,8 @@ function on(eventName, listener) {
 
 //2 params -> eventName and data that we want to pass
 function emit(eventName, data) {
+    console.log('evnetBus emit',eventName);
+    console.log(data);
     //emit a custom event with the name and the data 
     window.dispatchEvent(new CustomEvent(eventName, { detail: data }));
 }

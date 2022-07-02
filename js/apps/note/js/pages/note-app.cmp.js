@@ -11,10 +11,10 @@ import { eventBus } from "../../../../app-services/eventBus-service.js";
 export default {
     template: `
     <section class="note-app">
-        <h1>Notes</h1>
+        <!-- <h1>Notes</h1> -->
         <note-filter @filtered="filterNote"/>
         <note-edit @renderNote="renderNote"></note-edit>
-        <h2>Note list</h2>
+        <!-- <h2>Note list</h2> -->
         <note-list :notes="notesToDisplay" @remove="removeNote"/>
     </section>`,
     data() {
@@ -27,23 +27,16 @@ export default {
     created() {
         noteService.query().then(notes => {
             this.notes = notes
-            // console.log('on create', this.notes);
         })
-        // noteService.createEmailNote('emailToNote', this.noteFromEmail)
         eventBus.on('emailToNote', this.noteFromEmail)
-
-
     },
     methods: {
         renderNote(newNote) {
-            // console.log('render',newNote);
             this.notes.push(newNote)
         },
         removeNote(id) {
-            // console.log('removeNote', id);
             noteService.remove(id)
                 .then(() => {
-                    // console.log('Deleted successfully')
                     const idx = this.notes.findIndex((note) => note.id === id)
                     this.notes.splice(idx, 1)
                     showSuccessMsg('Deleted successfully')
@@ -54,7 +47,6 @@ export default {
                 })
         },
         filterNote(filterBy) {
-            // console.log(filterBy);
             this.filterBy = filterBy;
         },
         noteFromEmail(email) {
