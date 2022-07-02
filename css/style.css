@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
@@ -18,8 +19,8 @@ p {
 }
 
 .app-header {
-    color: #eef2e2;
-    background-color: #247291;
+    color: #3f3f3f;
+    background-color: #91c9df;
     height: 10vh;
     display: flex;
     align-items: center;
